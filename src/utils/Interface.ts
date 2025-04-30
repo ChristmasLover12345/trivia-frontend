@@ -33,3 +33,8 @@ export interface UserModel {
     wrongAnswer3?: string;
   }
   
+
+  export interface LoginModel {
+    Username: string;
+    Password: string;
+  }
