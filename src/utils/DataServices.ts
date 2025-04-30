@@ -1,5 +1,7 @@
-import { LoginModel } from "./Interface"
+import { LoginModel, QuizModel } from "./Interface"
 const URL = "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net/"
+
+const blobUrl = "https://triviablobjh.blob.core.windows.net/triviastorage/"
 
 
 export const CreateUser = async (newUser:LoginModel) => {
@@ -65,3 +67,72 @@ export const GetQuizzesById = async(UserId:number) =>
         const data = await res.json();
         return data;
     }
+
+    export const CreateQuiz = async (quiz:QuizModel ) => {
+         const res = await fetch(URL + "Quiz/CreateQuiz", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify(quiz)
+         });
+         if (!res.ok) {
+             console.log("Error");
+             return null;
+         };
+         const data = await res.json();
+         return data;
+     }
+
+     export const UpdateQuiz = async (quiz:QuizModel ) => {
+        const res = await fetch(URL + "Quiz/UpdateQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(quiz)
+        });
+        if (!res.ok) {
+            console.log("Error");
+            return null;
+        };
+        const data = await res.json();
+        return data;
+    }
+
+    export const UploadIMage = async (quiz:QuizModel ) => {
+        const res = await fetch(URL + "Quiz/CreateQuiz", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(quiz)
+        });
+        if (!res.ok) {
+            console.log("Error");
+            return null;
+        };
+        const data = await res.json();
+        return data;
+    }
+
+    export const blobUpload = async (params: FormData)=> {
+        const response = await fetch(URL + '/Blob/Upload', {
+            method: 'POST',
+            // The browser automatically sets the correct Content-Type header to multipart/form-data
+            body: params, //becuase params is FormData we do NOT need to stringify it
+        });
+
+        if (response.ok) {
+            // Extract the filename from FormData
+            const fileName = params.get('fileName') as string;
+            
+            // Construct the Blob Storage URL
+            const uploadedFileUrl = `${blobUrl}/${fileName}`;
+            
+            return uploadedFileUrl;
+        } else {
+            console.log('Failed to upload file.');
+            return null;
+        }
+};
