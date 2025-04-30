@@ -17,11 +17,11 @@ export const CreateUser = async (newUser:LoginModel) => {
             const data = await response.json();
             const message = data.message;
             console.log(message);
-            return data.success;
+            return false;
         }
     const data = await response.json();
     console.log(data);
-    return data;
+    return true;
 
 }
 
