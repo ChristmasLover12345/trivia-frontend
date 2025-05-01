@@ -38,3 +38,9 @@ export interface UserModel {
     Username: string;
     Password: string;
   }
+
+  export interface UserTokenModel {
+    Token: string;
+    userId: number;
+
+  }

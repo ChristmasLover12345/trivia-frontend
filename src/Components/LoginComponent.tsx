@@ -1,7 +1,9 @@
 'use client'
 
-import { CreateUser } from '@/utils/DataServices'
+import { CreateUser, logIn } from '@/utils/DataServices'
 import { LoginModel } from '@/utils/Interface'
+import { SetTokenLocalStorage } from '@/utils/LocalStorage'
+import { Router, useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 const LoginComponent = () => {
@@ -10,9 +12,11 @@ const [errorMessage, setErrorMessage] = useState<string>("")
 const [username, setUsername] = useState<string>("")
 const [password, setPassword] = useState<string>("")
 
+const router = useRouter()
+
 const handleSubmit = async () => {
 
- if (username === "" || password === "") {
+ if (username.trim() === "" || password.trim() === "") {
     setErrorMessage("Username and/or Password cannot be empty.")
     return
   }
@@ -20,14 +24,15 @@ const handleSubmit = async () => {
   if (signUpPage) {
 
     const newUser: LoginModel ={
-      Username: username,
-      Password: password
+      Username: username.trim(),
+      Password: password.trim()
     }
 
     const succes = await CreateUser(newUser)
 
     if (succes) {
       setErrorMessage("")
+      setSignUpPage(false)
     } else {
       setErrorMessage("User already exists")
     }
@@ -37,11 +42,25 @@ const handleSubmit = async () => {
   {
 
     const newUser: LoginModel ={
-      Username: username,
-      Password: password
+      Username: username.trim(),
+      Password: password.trim()
     }
 
-    
+    const succes = await logIn(newUser)
+
+    if (succes == null)
+    {
+      setErrorMessage("Invalid username or password")
+    }
+    else
+    {
+      
+      setErrorMessage("")
+      SetTokenLocalStorage(succes)
+     
+
+      router.push("/Home")
+    }
 
   }
 
@@ -58,7 +77,7 @@ const handleSubmit = async () => {
 
         <input onChange={(e) => {setUsername(e.target.value)}} type="text" placeholder='Username' className='rounded-2xl mt-6 bg-white text-black ps-0.5 w-[300px] h-[50px]' />
         <input onChange={(e) => {setPassword(e.target.value)}} type="text" placeholder='Password' className='rounded-2xl mt-3 bg-white text-black ps-0.5 w-[300px] h-[50px]' />
-        <button className='rounded-2xl w-[150px] h-[50px] bg-blue-500 text-white mt-4'>{signUpPage ? "Sign Up" : "Login"}</button>
+        <button onClick={handleSubmit} className='rounded-2xl w-[150px] h-[50px] bg-blue-500 text-white mt-4'>{signUpPage ? "Sign Up" : "Login"}</button>
 
         <button onClick={() => setSignUpPage(!signUpPage)} className='mt-4 text-blue-500 underline'>
           {signUpPage ? "Already have an account? Login" : "Don't have an account? Sign Up"}
