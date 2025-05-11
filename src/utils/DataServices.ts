@@ -1,5 +1,5 @@
 import { LoginModel, QuizModel } from "./Interface"
-const URL = "trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net/"
+const URL = "https://trivia-api-g3d7dwczhma0hzdt.westus-01.azurewebsites.net/"
 
 const blobUrl = "https://triviablobjh.blob.core.windows.net/triviastorage/"
 
@@ -14,11 +14,15 @@ export const CreateUser = async (newUser:LoginModel) => {
     })
     if(!response.ok)
         {
+        try {
             const data = await response.json();
-            const message = data.message;
+            console.log(data.message);
+        } catch {
+            const message = await response.text();
             console.log(message);
-            return false;
         }
+            return false;
+    }
     const data = await response.json();
     console.log(data);
     return true;
@@ -26,7 +30,6 @@ export const CreateUser = async (newUser:LoginModel) => {
 }
 
 export const logIn = async (user: LoginModel) =>{
-    console.log(user)
     const response = await fetch(URL + "User/login", {
         method: "POST",
         headers: {
@@ -43,6 +46,7 @@ export const logIn = async (user: LoginModel) =>{
         return null;
     }
     const data = await response.json();
+    console.log(data);
     return data;
 }
 
@@ -100,24 +104,10 @@ export const GetQuizzesById = async(UserId:number) =>
         return data;
     }
 
-    export const UploadIMage = async (quiz:QuizModel ) => {
-        const res = await fetch(URL + "Quiz/CreateQuiz", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(quiz)
-        });
-        if (!res.ok) {
-            console.log("Error");
-            return null;
-        };
-        const data = await res.json();
-        return data;
-    }
+  
 
     export const blobUpload = async (params: FormData)=> {
-        const response = await fetch(URL + '/Blob/Upload', {
+        const response = await fetch(URL + 'Blob/Upload', {
             method: 'POST',
             // The browser automatically sets the correct Content-Type header to multipart/form-data
             body: params, //becuase params is FormData we do NOT need to stringify it

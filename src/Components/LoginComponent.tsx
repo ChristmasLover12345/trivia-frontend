@@ -3,7 +3,7 @@
 import { CreateUser, logIn } from '@/utils/DataServices'
 import { LoginModel } from '@/utils/Interface'
 import { SetTokenLocalStorage } from '@/utils/LocalStorage'
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
 const LoginComponent = () => {
