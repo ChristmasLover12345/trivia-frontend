@@ -60,7 +60,11 @@ export const GetUserById = async(UserId:number) =>
 export const GetQuizzes = async() =>
     {
         const res = await fetch(URL + `Quiz/GetAllQuizzes`)
-        const data = await res.json();
+        if (!res.ok) {
+            console.log("Error");
+            return null;
+        }
+        const data = await res.json(); // should be an array
         return data;
     }
 
