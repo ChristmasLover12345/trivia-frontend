@@ -42,6 +42,7 @@ export interface UserModel {
   export interface UserTokenModel {
     Token: string;
     userId: number;
-
+    setToken: (token: string) => void;
+    setUserId: (userId: number) => void;
   }
 
