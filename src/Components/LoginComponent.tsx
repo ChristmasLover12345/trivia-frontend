@@ -1,8 +1,9 @@
 "use client";
 
+import { useUserContext } from "@/Context/userContext";
 import { CreateUser, logIn } from "@/utils/DataServices";
-import { LoginModel } from "@/utils/Interface";
-import { SetTokenLocalStorage } from "@/utils/LocalStorage";
+import { LoginModel, UserTokenModel } from "@/utils/Interface";
+
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -11,6 +12,8 @@ const LoginComponent = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const {Token, userId, setToken, setUserId} = useUserContext();
 
   const router = useRouter();
 
@@ -46,7 +49,8 @@ const LoginComponent = () => {
         setErrorMessage("Invalid username or password");
       } else {
         setErrorMessage("");
-        SetTokenLocalStorage(succes);
+        setToken(succes.Token);
+        setUserId(succes.userId);
 
         router.push("/Home");
       }
