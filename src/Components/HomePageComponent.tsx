@@ -6,6 +6,9 @@ import Logo from '../../public/QuizLibrary_LogoTrue.png'
 import { CircleUserRound, Plus } from 'lucide-react'
 
 const HomePageComponent = () => {
+
+
+
   return (
     <div className='min-w-screen min-h-screen flex flex-col items-center  bg-gray-500'>
 
@@ -47,7 +50,12 @@ const HomePageComponent = () => {
 
         </div>
 
-        
+
+        {/* Quiz cards */}
+
+        <div className='grid grid-cols-3 gap-2 w-full mx-3'>
+          {/* map tru the quizzes here once you freate the quiz cards components */}
+        </div>
 
     </div>
   )
