@@ -4,7 +4,7 @@ import { UserTokenModel } from "@/utils/Interface";
 import { createContext, useContext, useEffect, useState } from "react";
 
 
-const userDTO = createContext<UserTokenModel| undefined> (undefined)
+const userDTO = createContext<UserTokenModel | undefined> (undefined)
 
 export const MyUserProvider = ({ children }: { children: React.ReactNode }) => {
     const [Token, setToken] = useState<string>("");

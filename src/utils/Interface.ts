@@ -20,7 +20,6 @@ export interface UserModel {
     isDeleted: boolean;
     questions?: QuestionModel[];
   }
-
   
   export interface QuestionModel {
     id: number;
