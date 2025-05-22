@@ -9,15 +9,23 @@ const userDTO = createContext<UserTokenModel | undefined> (undefined)
 export const MyUserProvider = ({ children }: { children: React.ReactNode }) => {
     const [Token, setToken] = useState<string>("");
     const [userId, setUserId] = useState<number>(0);
+    const [userName, setUserName] = useState<string>("")
 
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
         const savedUserId = localStorage.getItem("userId");
+        const savedUserName = localStorage.getItem("userName");
+
         if (savedToken) {
             setToken(savedToken);
         }
+
         if (savedUserId) {
             setUserId(parseInt(savedUserId));
+        }
+
+        if (savedUserName) {
+            setUserName(savedUserName);
         }
     },[])
 
@@ -33,9 +41,15 @@ export const MyUserProvider = ({ children }: { children: React.ReactNode }) => {
         
     }, [userId]);
 
+    useEffect(() => {
+        
+            localStorage.setItem("userName", userName);
+        
+    }, [userName]);
+
 
     return (
-        <userDTO.Provider value={{ Token, userId, setToken, setUserId }}>
+        <userDTO.Provider value={{ Token, userId, setToken, setUserId, setUserName, userName }}>
             {children}
         </userDTO.Provider>
     )

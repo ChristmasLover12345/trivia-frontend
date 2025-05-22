@@ -10,6 +10,7 @@ export interface UserModel {
   export interface QuizModel {
     id: number;
     creatorId: number;
+    CreatorUsername?: string;
     title?: string;
     description?: string;
     imageUrl?: string;
@@ -41,6 +42,8 @@ export interface UserModel {
   export interface UserTokenModel {
     Token: string;
     userId: number;
+    userName: string;
+    setUserName: (userName: string) => void;
     setToken: (token: string) => void;
     setUserId: (userId: number) => void;
   }
