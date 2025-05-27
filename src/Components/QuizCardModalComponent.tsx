@@ -7,7 +7,7 @@ const [isOpen, setIsOpen] = useState<boolean>(false)
 
 
   return (
-    <div onClick={() => setIsOpen(true)} className='relative bg-black p-4 rounded-lg shadow-md'>
+    <div onClick={() => setIsOpen(true)} className='relative cursor-pointer bg-black p-4 rounded-lg shadow-md'>
 
         <h2 className='text-white'>Learn More</h2>
 
