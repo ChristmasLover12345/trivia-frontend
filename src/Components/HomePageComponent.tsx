@@ -4,6 +4,8 @@ import Image from 'next/image'
 import React from 'react'
 import Logo from '../../public/QuizLibrary_LogoTrue.png'
 import { CircleUserRound, Plus } from 'lucide-react'
+import QuizCardComponent from './QuizCardComponent'
+import testImage from '../../public/omoriboy-soyjaks.gif'
 
 const HomePageComponent = () => {
 
@@ -54,6 +56,20 @@ const HomePageComponent = () => {
         {/* Quiz cards */}
 
         <div className='grid grid-cols-3 gap-2 w-full mx-3'>
+          <QuizCardComponent 
+          id={1}
+          creatorId={1}
+          CreatorUsername='JohnDoe'
+          title='Sample Quiz'
+          description='This is a sample quiz description.'
+          imageUrl={testImage.src}
+          difficulty='Easy'
+          winScore={10}
+          winMessage='Congratulations! You won!'
+          loseMessage='Better luck next time!'
+          isDeleted={false}
+          questions={[]}
+          />
           {/* map tru the quizzes here once you freate the quiz cards components */}
         </div>
 

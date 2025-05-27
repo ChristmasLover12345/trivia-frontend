@@ -3,8 +3,10 @@
 
 import { QuizModel } from '@/utils/Interface'
 import React from 'react'
+import QuizCardModalComponent from './QuizCardModalComponent'
 
-const QuizCardComponent = ( {
+const QuizCardComponent = ( 
+  {
     id,
     creatorId,
     CreatorUsername,
@@ -18,12 +20,13 @@ const QuizCardComponent = ( {
     isDeleted,
     questions 
 
-}: QuizModel ) => {
+}: QuizModel 
+) => {
 
 
   return (
     // These are supposed to go into collumns, so remember to not define width and let them be responsive
-    <div className='h-[400px] flex flex-col justify-between bg-white rounded-lg shadow-md relative'>
+    <div className='h-[600px] flex flex-col justify-between bg-white rounded-lg shadow-md relative'>
       
       
       <img src={imageUrl} alt="Quiz card image" className='h-60% w-full'/>
@@ -36,6 +39,7 @@ const QuizCardComponent = ( {
         </div>
 
         <h3>{`Created By ${CreatorUsername}`}</h3>
+        <QuizCardModalComponent/>
 
       </div>
 
