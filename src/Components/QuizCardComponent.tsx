@@ -4,6 +4,7 @@
 import { QuizModel } from '@/utils/Interface'
 import React, { useEffect, useState } from 'react'
 import QuizCardModalComponent from './QuizCardModalComponent'
+import { Dialog, DialogContent, DialogTrigger } from '@radix-ui/react-dialog'
 
 const QuizCardComponent = ( 
   {
@@ -62,6 +63,24 @@ const QuizCardComponent = (
 
         <div className='flex justify-between items-center p-2'>
           <h3 className='text-black'>{`Created By ${CreatorUsername}`}</h3>
+
+          <Dialog >
+            <DialogTrigger asChild>
+              <button className='cursor-pointer'>Learn More</button>
+            </DialogTrigger>
+
+            <DialogContent>
+              
+            </DialogContent>
+
+          </Dialog>
+          
+
+
+
+
+
+
           <QuizCardModalComponent/>
         </div>
 
