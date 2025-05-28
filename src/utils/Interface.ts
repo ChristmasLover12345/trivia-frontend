@@ -21,6 +21,16 @@ export interface UserModel {
     isDeleted: boolean;
     questions?: QuestionModel[];
   }
+
+  export interface QuizCardModel {
+    id: number;
+    creatorId: number;
+    CreatorUsername?: string;
+    title?: string;
+    description?: string;
+    imageUrl?: string;
+    difficulty?: string;
+  }
   
   export interface QuestionModel {
     id: number;

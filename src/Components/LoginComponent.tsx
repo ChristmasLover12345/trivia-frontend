@@ -10,22 +10,22 @@ import React, { useState } from "react";
 const LoginComponent = () => {
   const [signUpPage, setSignUpPage] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const [username, setUsername] = useState<string>("");
+  const [inputName, setInputName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const {Token, userId, setToken, setUserId} = useUserContext();
+  const { setToken, setUserId, setUserName } = useUserContext();
 
   const router = useRouter();
 
   const handleSubmit = async () => {
-    if (username.trim() === "" || password.trim() === "") {
+    if (inputName.trim() === "" || password.trim() === "") {
       setErrorMessage("Username and/or Password cannot be empty.");
       return;
     }
 
     if (signUpPage) {
       const newUser: LoginModel = {
-        Username: username.trim(),
+        Username: inputName.trim(),
         Password: password.trim(),
       };
 
@@ -39,7 +39,7 @@ const LoginComponent = () => {
       }
     } else {
       const newUser: LoginModel = {
-        Username: username.trim(),
+        Username: inputName.trim(),
         Password: password.trim(),
       };
 
@@ -51,6 +51,7 @@ const LoginComponent = () => {
         setErrorMessage("");
         setToken(succes.Token);
         setUserId(succes.userId);
+        setUserName(succes.Username);
 
         router.push("/Home");
       }
@@ -65,7 +66,7 @@ const LoginComponent = () => {
 
       <input
         onChange={(e) => {
-          setUsername(e.target.value);
+          setInputName(e.target.value);
         }}
         type="text"
         placeholder="Username"

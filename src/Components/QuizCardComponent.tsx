@@ -1,6 +1,6 @@
 "use client";
 
-import { QuizModel } from "@/utils/Interface";
+import { QuizCardModel, QuizModel } from "@/utils/Interface";
 import React, { useEffect, useState } from "react";
 
 import { DialogDescription, DialogHeader, DialogTitle, Dialog, DialogContent, DialogTrigger, DialogFooter  } from "./ui/dialog";
@@ -14,12 +14,8 @@ const QuizCardComponent = ({
   description,
   imageUrl,
   difficulty,
-  winScore,
-  winMessage,
-  loseMessage,
-  isDeleted,
-  questions,
-}: QuizModel) => {
+  
+}: QuizCardModel) => {
   const [difficultyColor, setDifficultyColor] = useState<string>("");
   const router = useRouter();
 

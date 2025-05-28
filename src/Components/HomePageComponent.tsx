@@ -57,18 +57,14 @@ const HomePageComponent = () => {
 
         <div className='grid grid-cols-3 gap-2 w-full mx-3'>
           <QuizCardComponent 
-          id={1}
+          id={5}
           creatorId={1}
           CreatorUsername='JohnDoe'
           title='Sample Quiz'
           description='This is a sample quiz description.'
           imageUrl={testImage.src}
           difficulty='Easy'
-          winScore={10}
-          winMessage='Congratulations! You won!'
-          loseMessage='Better luck next time!'
-          isDeleted={false}
-          questions={[]}
+    
           />
           {/* map tru the quizzes here once you freate the quiz cards components */}
         </div>
