@@ -72,6 +72,22 @@ export const GetQuizzes = async () => {
   return data;
 };
 
+export const GetQuizById = async (QuizId: number, token: string) => {
+  const res = await fetch(URL + `Quiz/GetQuizById/${QuizId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    console.log("Error");
+    return null;
+  }
+  const data = await res.json();
+  return data;
+};
+
 export const GetQuizzesById = async (UserId: number, token: string) => {
   const res = await fetch(URL + `Quiz/GetQuizzesById/${UserId}`, {
     method: "GET",
