@@ -69,7 +69,7 @@ const QuizCardComponent = ({
           </div>
         </div>
         <DialogContent className="w-[90%] sm:w-[60%] md:w-[40%] lg:w-[40%]  bg-gray-800 rounded-lg shadow-lg">
-          <DialogHeader>
+          <DialogHeader className="mt-3">
             <img
               src={imageUrl}
               alt="Quiz card image"
